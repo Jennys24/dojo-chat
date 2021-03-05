@@ -26,3 +26,13 @@ hr {
     float: right!important;
     margin-right: 5px;
   }
+  .w-message-out{
+    margin-top: 5px!important;
+  }
+  .enviarMsg, .smiles{
+    margin-top: 5px;
+  }
+  .w-write-message-item{
+    padding-right: 0!important;
+    box-sizing: border-box!important;
+  }

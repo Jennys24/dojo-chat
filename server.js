@@ -23,6 +23,22 @@ app.use(require('./routes/auth'));
 app.use(require('./routes/routes'));
 
 
-app.listen(port, function() {
+const server = app.listen(port, function() {
     console.log('Escuchando en el puerto ' + port);
+});
+
+
+  // Ahora creamos nuestras funciones de Sockets
+const io = require('socket.io')(server);
+
+  // cuando me conecte con algún cliente
+io.on('connection', function(socket) {
+    
+    socket.on('enviandoMsn', function(inf){
+        console.log(inf);
+        socket.broadcast.emit('compartiendoMsn', { inf });
+
+    });
+
+
 });
