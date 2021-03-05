@@ -14,30 +14,133 @@
 	<link href="css/font-awesome.min.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
 	<link href="css/queries.css" rel="stylesheet">
+	<link href="css/misestilos.css" rel="stylesheet">
 </head>
 
 <body>
 	<!-- Navbar con Bootstrap -->
 	<nav class="navbar navbar navbar-lighttext-white pb-0" style="background-color: #009688;" >
 		<div class="container-fluid pb-0">
-			<a class="navbar-brand" href="">
-				<img src="/image/icono-index1.png" alt="" width="50" height="50" class="d-inline align-baseline">
-			</a>
 			<!--aqui colocamos la personalización del usuario-->
-			<div class="col-xs-2">
-				<a href="/logout" type="button" class="btn">Cerrar sesión</i></a>
+			<div class="col-xs-12" id="session">
+				<a href="/logout" type="button" id="btnCerrar" class="btn">Cerrar sesión</i></a>
 			</div>
 		</div>
 	</nav>
 
 	<div class="w-app">
 		<div class="container">
+			<aside class="col-md-3 w-contacts">
+        <header class="w-profile clearfix">
+          <div class="avatar col-xs-7">
+            <img src="/image/images13.jpeg" alt="">
+          </div>
 
-			<section class="col-md-12 w-contacts w-messages">
+          <div class="w-chat-controls col-xs-3">
+            <div class="icon-dots-three-vertical"></div>
+            <div class="icon-message"></div>
+          </div>
+        </header>
+        <div class="w-search icon-search">
+          <input type="text" placeholder="Buscar o empezar un chat nuevo" class="w-search-contacts">
+        </div>
+        <ul class="w-recent-chats">
+          <li>
+            <div class="avatar">
+              <img src="/image/coding-dojo.png" alt="" class="wh-44">
+              <h4 class="w-contact-name">Conding Dojo</h4>
+              <p class="w-last-message" id="mensaje">Bienvenidos</p>
+            </div>
+            <div class="time" id="hora">14:27</div>
+          </li>
+          <li>
+            <div class="avatar">
+              <img src="/image/images11.jpeg" alt="" class="wh-44">
+              <h4 class="w-contact-name">Pedro Perez</h4>
+              <p class="w-last-message">La clase va bien!</p>
+            </div>
+            <div class="time">11:25</div>
+          </li>
+          <li>
+            <div class="avatar">
+              <img src="/image/images14.jpeg" alt="" class="wh-44">
+              <h4 class="w-contact-name">Marimar</h4>
+              <p class="w-last-message">El panel de speakers esta buanazo</p>
+            </div>
+            <div class="time">09:25</div>
+          </li>
+          <li>
+            <div class="avatar">
+              <img src="/image/images3.jpeg" alt="" class="wh-44">
+              <h4 class="w-contact-name">Cleopatra</h4>
+              <p class="w-last-message">Pues dale chamo!</p>
+            </div>
+            <div class="time">Ayer</div>
+          </li>
+          <li>
+            <div class="avatar">
+              <img src="/image/images12.jpeg" alt="" class="wh-44">
+              <h4 class="w-contact-name">Chino</h4>
+              <p class="w-last-message">¿Cómo van las chicas?</p>
+            </div>
+            <div class="time">Martes</div>
+          </li>
+          <li>
+            <div class="avatar">
+              <img src="/image/images4.jpeg" alt="" class="wh-44">
+              <h4 class="w-contact-name">Genesis Hurtado</h4>
+              <p class="w-last-message">Hoy me toca clases de canto, yee!</p>
+            </div>
+            <div class="time">Lunes</div>
+          </li>
+          <li>
+            <div class="avatar">
+              <img src="/image/images9.jpeg" alt="" class="wh-44">
+              <h4 class="w-contact-name">Miriam Hernández</h4>
+              <p class="w-last-message">Wuju! esto me encanta!! en verdad!</p>
+            </div>
+            <div class="time">13/01/2016</div>
+          </li>
+          <li>
+            <div class="avatar">
+              <img src="/image/images2.jpeg" alt="" class="wh-44">
+              <h4 class="w-contact-name">Kimberly Curso</h4>
+              <p class="w-last-message">No te preocupes, tengo el salón bajo control</p>
+            </div>
+            <div class="time">11/01/2016</div>
+          </li>
+          <li>
+            <div class="avatar">
+              <img src="/image/images7.jpeg" alt="" class="wh-44">
+              <h4 class="w-contact-name">Mario Moreno</h4>
+              <p class="w-last-message">Vao a comer?</p>
+            </div>
+            <div class="time">03/01/2016</div>
+          </li>
+          <li>
+            <div class="avatar">
+              <img src="/image/images8.jpeg" alt="" class="wh-44">
+              <h4 class="w-contact-name">Jefe Proyecto</h4>
+              <p class="w-last-message">Gian: Ya está lista la unidad 2</p>
+            </div>
+            <div class="time">03/01/2016</div>
+          </li>
+          <li>
+            <div class="avatar">
+              <img src="/image/images5.jpeg" alt="" class="wh-44">
+              <h4 class="w-contact-name">Alejandro Sol</h4>
+              <p class="w-last-message">Estoy bajando con Aldo, vao a comer?</p>
+            </div>
+            <div class="time">03/01/2016</div>
+          </li>
+        </ul>
+      </aside>
+
+			<section class="col-md-9 w-contacts w-messages">
 				<header class="w-chat-messages clearfix">
 					<div class="avatar col-xs-9 w-chat-profile">
 						<img src="image/coding-dojo.png" alt="">
-						<h4 class="w-contact-name">Sala de Chat!</h4>
+						<h4 class="w-contact-name">Sala de Chat - <%=user.name%></h4>
 						<ul class="w-users-messages">
 							<li>Usuario 1 </li>
 							<li>Usuario 2 </li>
@@ -78,22 +181,24 @@
 
 				<footer class="pane-footer w-write-message-footer">
 					<ul class="w-write-message-list clearfix">
-						<li class="col-xs-1 w-write-message-item icon-insert_emoticon w-write-message-icon"></li>
-						<li class="col-xs-10 w-write-message-item w-write-message-input">
+
+						<li class="col-xs-1 w-write-message-item"><button class="icon-insert_emoticon w-write-message-icon"></button></li>
+						<li class="col-xs-9 w-write-message-item w-write-message-input">
 							<input type="text" name="w-message-input" class="w-write-message-field"
 								placeholder="Escribe tu mensaje aquí" id="mensajes">
 						</li>
-						<li class="col-xs-1 w-write-message-item icon-mic w-write-message-icon"></li>
+						<li class="col-xs-1 w-write-message-item"><button class="enviarMsg"><i class="fa fa-paper-plane fa-2x" aria-hidden="true"></i></button></li>
+
 					</ul>
 				</footer>
 			</section>
 		</div>
 	</div>
 	<script type="text/javascript" src="js/main.js"></script>
-	<script src="/socket.io/socket.io.js"></script>
+
 	<script>
 
-		const socket = io('http://localhost:8000');
+
 
 
 	</script>

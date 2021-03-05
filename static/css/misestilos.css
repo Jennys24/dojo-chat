@@ -18,3 +18,11 @@ hr {
     margin: auto;
     align-items: center;
   }
+  #btnCerrar{
+    background-color: lightyellow!important;
+    margin-top: 22px;
+  }
+  div #btnCerrar {
+    float: right!important;
+    margin-right: 5px;
+  }

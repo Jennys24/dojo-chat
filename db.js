@@ -1,9 +1,31 @@
 const Sequelize = require('sequelize');
 
 // acá creamos la conexión a la Base de Datos
-const sql = new Sequelize('db_node_base_login', 'root', 'abigail', {
+const sql = new Sequelize('chat', 'root', 'abigail', {
     host: 'localhost',
     dialect: 'mysql'
+});
+
+const Mensaje = sql.define('Mensaje', {
+
+    id: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    mensaje: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+            notNull: {
+                msg: 'Debe agregar un mensaje'
+            },
+            len: {
+                args: [1],
+                msg: 'El nombre debe ser de largo al menos 1'
+            }
+        }
+    }
 });
 
 const User = sql.define('User', {
@@ -67,7 +89,10 @@ sql.sync()
         console.log('Tablas creadas (SI NO EXISTEN) ...');
 });
 
+Mensaje.belongsTo(User, {as: "emisor"});
+Mensaje.belongsTo(User, {as: "receptor"});
 
 module.exports = {
-    User
+    User, 
+    Mensaje
 };
