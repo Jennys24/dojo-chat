@@ -1,0 +1,20 @@
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  #fondo-login{
+    background-image: url("/image/fondo-login2.jpg");
+  }
+  #fondo-login2 { 
+    background-image: url("/image/fondo-login.jpg");
+  }
+  #fondo-login, #fondo-login2 {
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  #divLogin {
+    margin: auto;
+    align-items: center;
+  }
