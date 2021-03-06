@@ -142,7 +142,7 @@
 				<header class="w-chat-messages clearfix">
 					<div class="avatar col-xs-9 w-chat-profile">
 						<img src="image/coding-dojo.png" alt="">
-						<h4 class="w-contact-name">Sala de Chat</h4>
+						<h4 class="w-contact-name">Coding Dojo</h4>
 						<ul class="w-users-messages">
 							<li>Usuario 1 </li>
 							<li>Usuario 2 </li>
@@ -169,15 +169,11 @@
 
 						<div class="w-message w-message-out">
 							<div class="w-message-text">
-								<p>Hola, bienvenido al grupo</p>
+								<p>Bienvenidos</p>
 								<div class="time">11:14</div>
 							</div>
 						</div>
 
-
-						<div id="conversacion">
-
-						</div>
 					</div>
 				</section>
 
@@ -189,7 +185,7 @@
 							<input type="text" name="w-message-input" class="w-write-message-field"
 								placeholder="Escribe tu mensaje aquí" id="mensajesEmisor" required>
 						</li>
-						<li class="col-xs-1 w-write-message-item"><i class="fa fa-paper-plane fa-2x enviarMsg" aria-hidden="true"></i></li>
+						<li class="col-xs-1 w-write-message-item"><i class="fa fa-paper-plane fa-2x" id="enviarMsg" aria-hidden="true"></i></li>
 
 					</ul>
 				</footer>
@@ -206,8 +202,11 @@
 	<script>
 
 		$(document).ready(function(){
+
+      const socket = io('http://localhost:8000');
+
 			moment.locale("es");
-			$('.enviarMsg').on('click', function(){
+			$('#enviarMsg').on('click', function(){
 
 				let emiture = `
 						<div class="w-message w-message-out">
@@ -217,23 +216,37 @@
 							</div>
 						</div>
           `;
+        
 				$('#chat').append(emiture);
 
 				//console.log($("#mensajesEmisor").val());
-				$("#mensajesEmisor").val('');
-
+        
         const inf = { 
-          nombre: user.name,
+          nombre: '<%=user.name%>',
           mensaje: $("#mensajesEmisor").val(),
           hora: moment().format('HH:mm')          
         };
-
+        console.log('enviando inf');
+        console.log(inf);
+        
         socket.emit('enviandoMsn', inf);
-
+        
+        $("#mensajesEmisor").val('');
       });
+
+      $('#mensajesEmisor').on("keydown", function(e){
+				if(e.keyCode == 13) {
+
+          $('#enviarMsg').trigger('click');
+
+				};
+			});
+
+
 
       socket.on('compartiendoMsn', function(inf){
         console.log(inf);
+        console.log(inf.nombre);
 
         let recepture = `
           <div class="w-message w-message-in">

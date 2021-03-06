@@ -36,7 +36,7 @@ io.on('connection', function(socket) {
     
     socket.on('enviandoMsn', function(inf){
         console.log(inf);
-        socket.broadcast.emit('compartiendoMsn', { inf });
+        socket.broadcast.emit('compartiendoMsn', inf);
 
     });
 
