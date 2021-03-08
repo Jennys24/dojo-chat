@@ -34,11 +34,16 @@ const io = require('socket.io')(server);
   // cuando me conecte con algún cliente
 io.on('connection', function(socket) {
     
-    socket.on('enviandoMsn', function(inf){
-        console.log(inf);
-        socket.broadcast.emit('compartiendoMsn', inf);
+  socket.on('enviandoMsn', function(inf){
+    console.log(inf);
+    socket.broadcast.emit('compartiendoMsn', inf);
 
-    });
+  });
 
+  socket.on('ingresando', function(data){
+
+    socket.broadcast.emit('ingresandoUsuario', data);
+
+  });
 
 });

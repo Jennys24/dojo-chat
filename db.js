@@ -89,8 +89,10 @@ sql.sync()
         console.log('Tablas creadas (SI NO EXISTEN) ...');
 });
 
-Mensaje.belongsTo(User, {as: "emisor"});
-Mensaje.belongsTo(User, {as: "receptor"});
+
+User.hasMany(Mensaje);
+Mensaje.belongsTo(User);
+
 
 module.exports = {
     User, 
