@@ -35,7 +35,7 @@ const io = require('socket.io')(server);
 io.on('connection', function(socket) {
     
   socket.on('enviandoMsn', function(inf){
-    console.log(inf);
+    //console.log(inf);
     socket.broadcast.emit('compartiendoMsn', inf);
 
   });

@@ -6,27 +6,6 @@ const sql = new Sequelize('chat', 'root', 'abigail', {
     dialect: 'mysql'
 });
 
-const Mensaje = sql.define('Mensaje', {
-
-    id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-    },
-    mensaje: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        validate: {
-            notNull: {
-                msg: 'Debe agregar un mensaje'
-            },
-            len: {
-                args: [1],
-                msg: 'El nombre debe ser de largo al menos 1'
-            }
-        }
-    }
-});
 
 const User = sql.define('User', {
     id: {
@@ -84,9 +63,37 @@ const User = sql.define('User', {
     }
 });
 
+
+const Mensaje = sql.define('Mensaje', {
+
+    id: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    mensaje: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+            notNull: {
+                msg: 'Debe agregar un texto'
+            },
+        }
+    },
+    time: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+            notNull: {
+                msg: 'Debe agregar un tiempo'
+            },
+        }
+    }
+});
+
 sql.sync()
     .then(() => {
-        console.log('Tablas creadas (SI NO EXISTEN) ...');
+        console.log('TABLAS CREADAS, EN CASO DE NO EXISTIR ...');
 });
 
 

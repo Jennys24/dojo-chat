@@ -39,6 +39,7 @@
         <header class="w-profile clearfix">
           <div class="avatar col-xs-7">
             <img src="/image/Jenny.jpeg" alt="">
+            <%=user.name%>
           </div>
 
           <div class="w-chat-controls col-xs-3">
@@ -161,22 +162,25 @@
 				</header>
 				<section class="w-chat-panel">
 					<div class="w-message-list clearfix" id="chat">
-
-						<div class="w-message w-message-in">
+<% for ( let mensaje of chats) { %>
+  <% if( user.id != mensaje.UserId) { %> 
+  <div class="w-message w-message-in">
 							<div class="w-message-text">
-								<h5 class="blue-1">Usuario 1</h5>
-								<p>Hola que tal?</p>
-								<div class="time">11:12</div>
+                <h5 class="blue-1"><%= mensaje.User.name %></h5>
+								<p><%= mensaje.mensaje %></p>
+								<div class="time"><%= mensaje.time %></div>
 							</div>
 						</div>
-
+  <% } else { %>
 						<div class="w-message w-message-out">
 							<div class="w-message-text">
-								<p>Bienvenidos</p>
-								<div class="time">11:14</div>
+                <p><%= mensaje.mensaje %></p>
+								<div class="time"><%= mensaje.time %></div>
 							</div>
 						</div>
-
+  <% } %>
+<% } %>
+            
 					</div>
 				</section>
 
@@ -227,7 +231,8 @@
         const inf = { 
           nombre: '<%=user.name%>',
           mensaje: $("#mensajesEmisor").val(),
-          hora: moment().format('HH:mm')          
+          hora: moment().format('HH:mm'),
+          UserId: <%= user.id %>         
         };
         console.log('enviando inf');
         console.log(inf);
@@ -235,6 +240,9 @@
         socket.emit('enviandoMsn', inf);
         
         $("#mensajesEmisor").val('');
+
+        //guardar el mensaje en la base de datos
+        $.post("/mensajes", inf);
       });
 
       $('#mensajesEmisor').on("keydown", function(e){
@@ -265,7 +273,7 @@
       });
 
       let data = {
-        msg : '<%=user.name%>' + 'ha ingresado a la sala de Chat'
+        msg : '<%=user.name%>' + ' ha ingresado a la sala de Chat'
       }
       socket.emit('ingresando', data);
 
